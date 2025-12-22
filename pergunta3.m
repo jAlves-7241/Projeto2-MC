@@ -34,11 +34,11 @@ pTrap = regTrap(1)
 ySimp = 10^regSimp(2) * x.^regSimp(1);
 yTrap = 10^regTrap(2) * x.^regTrap(1);
 
-plot(x, ySimp, '--r')
+loglog(x, ySimp, '--r')
 hold on
-plot(x, yTrap, '--y')
+loglog(x, yTrap, '--y')
 
-
+% Parte estética
 title('Convergência (escala logarítimica)')
 xlabel('Passo (h)'), ylabel('Erro Absoluto')
 legend(sprintf('Simpson (p ≈ %.3f e C ≈ %.3f)', regSimp(1), 10^regSimp(2)), ...
