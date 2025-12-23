@@ -21,7 +21,8 @@ hold on
 
 %% Regressões
 
-x = linspace(min([hSimpson; hTrap]), max([hSimpson; hTrap]));
+xSimp = linspace(min(hSimpson), max(hSimpson));
+xTrap = linspace(min(hTrap), max(hTrap));
 
 % e ~~ C + h^p
 % log(Erro) ~~ log(C) * p*log(h)
@@ -31,12 +32,12 @@ regTrap = polyfit(log10(hTrap), log10(erroTrap), 1);
 pSimp = regSimp(1)
 pTrap = regTrap(1)
 
-ySimp = 10^regSimp(2) * x.^regSimp(1);
-yTrap = 10^regTrap(2) * x.^regTrap(1);
+ySimp = 10^regSimp(2) * xSimp.^regSimp(1);
+yTrap = 10^regTrap(2) * xTrap.^regTrap(1);
 
-loglog(x, ySimp, '--r')
+loglog(xSimp, ySimp, '--r')
 hold on
-loglog(x, yTrap, '--y')
+loglog(xTrap, yTrap, '--y')
 
 % Parte estética
 title('Convergência (escala logarítimica)')

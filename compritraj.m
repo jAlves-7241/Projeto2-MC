@@ -1,6 +1,5 @@
 function [l, pontos] = compritraj(f, intx, intu, t0, tn, n)
 
-    % Grelha
     numGrid = 101;
 
     x = linspace(intx(1), intx(2), numGrid);
@@ -8,8 +7,8 @@ function [l, pontos] = compritraj(f, intx, intu, t0, tn, n)
     [xx, vv] = meshgrid(x, v);
     pontos = [xx(:), vv(:)];
     
-    % RK
     dxdu = zeros(2, n+1); % Pré-alocar
+    l = zeros(1, numGrid^2); % Pré-alocar
 
     for i = 1:numGrid^2
 
@@ -19,6 +18,7 @@ function [l, pontos] = compritraj(f, intx, intu, t0, tn, n)
             dxdu(:,k) = f(t(k), sol(k,:)).';
         end
 
-    vNorm = vecnorm(dxdu, 2, 1);
-    l(i) = simpson(t, vNorm);    
+        vNorm = vecnorm(dxdu, 2, 1);
+        l(i) = simpson(t, vNorm);    
+        
     end
