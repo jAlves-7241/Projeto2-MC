@@ -3,7 +3,9 @@ clc, clearvars
 x0 = [2; 0];
 tSpan = [0, 20];
 
-vanDerPol = @(t, y) [y(2); 4*(1-y(1)^2)*y(2) - y(1)];
+mu = 4;
+
+vanDerPol = @(t, y) [y(2); mu*(1-y(1)^2)*y(2) - y(1)];
 
 [t1, y1] = ode45(vanDerPol, tSpan, x0);
 
