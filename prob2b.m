@@ -1,4 +1,4 @@
-clc, clearvars
+clc, clf, clearvars
 
 x0 = [1; 3];
 tSpan = [0, 20];

@@ -11,7 +11,7 @@ g = @(x) x.^20 .* exp(x-1); % Integranda
 % Exato 
 vExato = integral(g, 0, 1)
 
-% Simpson
+% Trapézios
 [vTrap, ~, ~, ~] = trapezios(g, 0, 1, TolS, MaxIter)
 
 % Recorrência
