@@ -1,6 +1,6 @@
 clc, clf, clearvars;
 
-TolS = 10^-15;
+TolS = vpa(10^-15);
 MaxIter = 50;
 
 f = @(x) x.^20 .* exp(x-1);
@@ -11,8 +11,8 @@ vExato = integral(f, 0, 1);
 vsimpson
 vtrap
 
-erroSimpson = abs(vExato - iterSimpson);
-erroTrap = abs(vExato - iterTrap);
+erroSimpson = vpa(abs(vExato - iterSimpson));
+erroTrap = vpa(abs(vExato - iterTrap));
 
 
 plot(hSimpson, erroSimpson, '*r')
@@ -28,8 +28,8 @@ xTrap = linspace(min(hTrap), max(hTrap));
 
 % e ~~ C * h^p
 % log(Erro) ~~ log(C) + p*log(h)
-regSimp = polyfit(log10(hSimpson), log10(erroSimpson), 1);
-regTrap = polyfit(log10(hTrap), log10(erroTrap), 1);
+regSimp = vpa(polyfit(log10(hSimpson), log10(erroSimpson), 1));
+regTrap = vpa(polyfit(log10(hTrap), log10(erroTrap), 1));
 
 pSimp = regSimp(1)
 pTrap = regTrap(1)
