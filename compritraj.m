@@ -7,7 +7,7 @@ function [l, pontos] = compritraj(f, intx, intu, t0, tn, n)
     [xx, vv] = meshgrid(x, v);
     pontos = [xx(:), vv(:)];
     
-    dxdu = zeros(2, n+1); % Pré-alocar
+    dudt = zeros(2, n+1); % Pré-alocar
     l = zeros(1, numGrid^2); % Pré-alocar
 
     for i = 1:numGrid^2
@@ -15,10 +15,10 @@ function [l, pontos] = compritraj(f, intx, intu, t0, tn, n)
         [~, sol, t, ~] = rk4rn(f, pontos(i,:), t0, tn, n);
         
         for k = 1:n+1
-            dxdu(:,k) = f(t(k), sol(k,:)).';
+            dudt(:,k) = f(t(k), sol(k,:)).';
         end
 
-        vNorm = vecnorm(dxdu, 2, 1);
+        vNorm = vecnorm(dudt, 2, 1);
         l(i) = simpson(t, vNorm);    
         
     end
