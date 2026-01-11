@@ -6,7 +6,7 @@ vanDerPol = @(t, y) [y(2); 4.*(1-y(1).^2).*y(2) - y(1)];
 [c, pontos] = compritraj(vanDerPol, [-3,3], [-8,8], 0, 4, 100);
 
 %% Colormap
-numGrid = sqrt(length(c)); % Dá NumGrid
+numGrid = sqrt(length(c)); % Dá 101, em princípio
 
 % Reorganizar em matrizes quadradas para mesh
 X = reshape(pontos(:,1), numGrid, numGrid);
