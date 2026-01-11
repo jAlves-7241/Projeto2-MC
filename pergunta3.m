@@ -17,7 +17,7 @@ erroTrap = abs(vExato - iterTrap);
 
 plot(hSimpson, erroSimpson, '*r')
 hold on
-plot(hTrap, erroTrap, '*y')
+plot(hTrap, erroTrap, '*b')
 xscale log, yscale log
 hold on
 
@@ -39,10 +39,10 @@ yTrap = 10^regTrap(2) * xTrap.^regTrap(1);
 
 loglog(xSimp, ySimp, '--r')
 hold on
-loglog(xTrap, yTrap, '--y')
+loglog(xTrap, yTrap, '--b')
 
 % Parte estética
-title('Convergência (escala logarítimica)')
+title('Convergência (escala logarítmica)')
 xlabel('Passo (h)'), ylabel('Erro Absoluto')
 legend(sprintf('Simpson (p ≈ %.3f e C ≈ %.3f)', regSimp(1), 10^regSimp(2)), ...
     sprintf('Trapézios (p ≈ %.3f e C ≈ %.3f)', regTrap(1), 10^regTrap(2)), ...
