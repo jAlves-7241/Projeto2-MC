@@ -6,8 +6,10 @@ MaxIter = 50;
 f = @(x) x.^20 .* exp(x-1);
 vExato = integral(f, 0, 1);
 
-[~, iterSimpson, ~, hSimpson, ~] = simpsonmetodo(f, 0, 1, TolS, MaxIter);
-[~, iterTrap, ~, hTrap] = trapezios(f, 0, 1, TolS, MaxIter);
+[vsimpson, iterSimpson, ~, hSimpson, ~] = simpsonmetodo(f, 0, 1, TolS, MaxIter);
+[vtrap, iterTrap, ~, hTrap] = trapezios(f, 0, 1, TolS, MaxIter);
+vsimpson
+vtrap
 
 erroSimpson = abs(vExato - iterSimpson);
 erroTrap = abs (vExato - iterTrap);
@@ -24,8 +26,8 @@ hold on
 xSimp = linspace(min(hSimpson), max(hSimpson));
 xTrap = linspace(min(hTrap), max(hTrap));
 
-% e ~~ C + h^p
-% log(Erro) ~~ log(C) * p*log(h)
+% e ~~ C * h^p
+% log(Erro) ~~ log(C) + p*log(h)
 regSimp = polyfit(log10(hSimpson), log10(erroSimpson), 1);
 regTrap = polyfit(log10(hTrap), log10(erroTrap), 1);
 
