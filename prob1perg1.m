@@ -1,16 +1,14 @@
 clc, clearvars;
 
-TolS = 1e-3;
-MaxIter = 20;
+tolS = 1e-3;
+maxIter = 20;
 g = @(x) x.^20 .* exp(x-1);
 
 vExato = integral(g, 0, 1) % Exato
 
-% Simpson
-[vSimpson, ~, ~, ~, numIterSimp] = simpsonmetodo(g, 0, 1, TolS, MaxIter)
+[vSimpson, ~, ~, ~, numIterSimp] = simpsonmetodo(g, 0, 1, tolS, maxIter) % Simpson
 
-% Recorrência
-i(1) = exp(-1);
+i(1) = exp(-1); % Recorrência
 for k = 2:20
     i(k) = 1 - k*i(k-1);  
 end
